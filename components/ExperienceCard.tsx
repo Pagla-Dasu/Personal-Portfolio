@@ -57,7 +57,7 @@ export default function ExperienceCard({experience}: Props) {
             <li>Summary Points</li>
             <li>Summary Points</li>
             <li>Summary Points</li> */}
-            {experience.points.map((point: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined, i: React.Key | null | undefined) => (
+            {experience.points.map((point: string, i: React.Key | null | undefined) => (
               <li key={i}>{point}</li>
             ))}
         </ul>
