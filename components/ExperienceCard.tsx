@@ -4,10 +4,10 @@ import { Education } from "@/typings";
 import { urlFor } from "@/sanity";
 
 type Props = {
-  experience: Education
+  experience: Education;
 };
 
-export default function ExperienceCard({experience}: Props) {
+export default function ExperienceCard({ experience }: Props) {
   return (
     <article className="flex flex-col rounded-lg items-center space-y-7 flex-shrink-0 w-[500px] md:w-[600px] xl:w-[900px] snap-center bg-[#292929] p-10 opacity-40 hover:opacity-100 cursor-pointer transition-opacity duration-200 overflow-hidden">
       <motion.img
@@ -25,7 +25,9 @@ export default function ExperienceCard({experience}: Props) {
       />
       <div className="px-0 md:px-10">
         <h4 className="text-4xl font-light">{experience?.school}</h4>
-        <p className="font-bold text-gray-500 text-sm mt-1">{experience?.affiliation}</p>
+        <p className="font-bold text-gray-500 text-sm mt-1">
+          {experience?.affiliation}
+        </p>
         <div className="flex space-x-2 my-2">
           {/* <img
             className="h-10 w-10 rounded-full"
@@ -50,17 +52,28 @@ export default function ExperienceCard({experience}: Props) {
             />
           ))}
         </div>
-        <p className="uppercase py-5 text-gray-300">Graduation Year: {experience?.year}</p>
-        <ul className="list-disc space-y-4 ml-5 text-lg">
-            {/* <li>Summary Points</li>
+        <p className="uppercase py-5 text-gray-300">
+          Graduation Year: {experience?.year}
+        </p>
+        {/* <ul className="list-disc space-y-4 ml-5 text-lg">
             <li>Summary Points</li>
             <li>Summary Points</li>
             <li>Summary Points</li>
-            <li>Summary Points</li> */}
+            <li>Summary Points</li>
+            <li>Summary Points</li>
             {experience.points.map((point: string, i: React.Key | null | undefined) => (
               <li key={i}>{point}</li>
             ))}
-        </ul>
+        </ul> */}
+        {Array.isArray(experience?.points) && (
+          <ul className="list-disc space-y-4 ml-5 text-lg">
+            {experience.points.map(
+              (point: string, i: React.Key | null | undefined) => (
+                <li key={i}>{point}</li>
+              )
+            )}
+          </ul>
+        )}
       </div>
     </article>
   );
